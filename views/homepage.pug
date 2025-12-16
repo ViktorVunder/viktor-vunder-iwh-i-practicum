@@ -5,12 +5,18 @@ head
 body    
     h1 Custom Object Table | Haustiere 
 
-    a(href="/update-cobj" style="text-align: center; margin: 0 auto; max-width: fit-content;") Add/Update this table
+    a(href="/update-cobj" style="text-align: center; margin: 0 auto; max-width: fit-content;") Add to this table
 
-    .cards 
+
+    table
+        thead
+            tr
+                td Name
+                td Haustierart
+                td Alter
         each haustier in data
-            .card 
-                h2.card__name #{haustier.properties.name}
-                p.card__email #{haustier.properties.haustierart}
-                p.card__email #{haustier.properties.alter}
+            tr
+                td #{haustier.properties.name}
+                td #{haustier.properties.haustierart}
+                td #{haustier.properties.alter}
 
