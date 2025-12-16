@@ -14,13 +14,59 @@ const PRIVATE_APP_ACCESS = '';
 
 // * Code for Route 1 goes here
 
+app.get('/', async (req, res) => {
+    const haustiere = 'https://api.hubspot.com/crm/v3/objects/2-54633903?properties=name,haustierart,alter';
+    const headers = {
+        Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
+        'Content-Type': 'application/json'
+    }
+    try {
+        const resp = await axios.get(haustiere, { headers });
+        const data = resp.data.results;
+        console.log("TEST" + JSON.stringify(data));
+        res.render('homepage', { title: 'Haustiere | HubSpot APIs', data });      
+    } catch (error) {
+        console.error(error);
+    }
+});
+
 // TODO: ROUTE 2 - Create a new app.get route for the form to create or update new custom object data. Send this data along in the next route.
 
 // * Code for Route 2 goes here
 
+app.get('/update-cobj', async (req, res) => {
+    res.render('updates', { title: 'Update Custom Object Form | HubSpot APIs' });
+});
+
+
 // TODO: ROUTE 3 - Create a new app.post route for the custom objects form to create or update your custom object data. Once executed, redirect the user to the homepage.
 
 // * Code for Route 3 goes here
+
+app.post('/update-cobj', async (req, res) => {
+    const update = {
+        properties: {
+            "name": req.body.name,
+            "haustierart": req.body.haustierart,
+            "alter": req.body.alter
+        }
+    }
+
+    const updateContact = `https://api.hubapi.com/crm/v3/objects/2-54633903`;
+    const headers = {
+        Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
+        'Content-Type': 'application/json'
+    };
+
+    try { 
+        await axios.post(updateContact, update, { headers } );
+        res.redirect('/');
+    } catch(err) {
+        console.error(err);
+    }
+
+});
+
 
 /** 
 * * This is sample code to give you a reference for how you should structure your calls. 

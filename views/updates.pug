@@ -3,7 +3,16 @@ head
     meta(name="viewport" content="width=device-width, initial-scale=1")
     link(rel="stylesheet", href="/css/style.css")
 body    
-
     h1 Update Custom Object Form | Integrating With HubSpot I Practicum
+    
+    form(action="/update-cobj" method="post") 
+        label(for="name") Name
+        input(type="text" id="name" name="name")
+        label(for="haustierart") Haustierart
+        input(type="text" id="haustierart" name="haustierart")
+        label(for="alter") Alter
+        input(type="text" id="alter" name="alter")
+        button(type="submit") Update
 
-    a(href="/") Return to the homepage
+
+    a(href="/" style="text-align: center; margin: 0 auto; max-width: fit-content;") Return to the homepage

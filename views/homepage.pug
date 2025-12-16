@@ -1,0 +1,16 @@
+head 
+    title= `Homepage | Integrating With HubSpot I Practicum`
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(rel="stylesheet", href="/css/style.css")
+body    
+    h1 Custom Object Table | Haustiere 
+
+    a(href="/update-cobj" style="text-align: center; margin: 0 auto; max-width: fit-content;") Add/Update this table
+
+    .cards 
+        each haustier in data
+            .card 
+                h2.card__name #{haustier.properties.name}
+                p.card__email #{haustier.properties.haustierart}
+                p.card__email #{haustier.properties.alter}
+
